@@ -19,6 +19,7 @@ class Node:
     # atualizar o nome 
     def setName(self, name):
         self.m_name = name
+    
 
     # metodo utilizado para comparar 2 nodos
     def __eq__(self, other):

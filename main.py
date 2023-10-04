@@ -1,58 +1,58 @@
+from node import Node
+from graph import Graph
+from queue import Queue
 
-
-class FruitStore:
-    def __init__(self, name, fruitPrices):
-        self.fruitPrices = fruitPrices
-        self.name = name
-        print('Welcome to ' + name + ' fruit store!')
-    
-    def getCostPerKg(self, fruit):
-        if fruit not in self.fruitPrices:
-            return None
-        return self.fruitPrices[fruit]
-    def getPrecoCompras(self,shoppingList):
-        totalCost = 0.0
-        for fruit, numKgs in shoppingList:
-            costPerKg = self.getCostPerKg(fruit)
-        if costPerKg != None:
-            totalCost += numKgs * costPerKg
-            return totalCost
-    def getNome(self):
-        return self.nome
-
-
-fruitPrices = {'apples': 2.00, 'oranges': 1.50, 'pears': 1.75}
-
-def buyFruit(fruit, weight):
-    if fruit not in fruitPrices:
-        print('We dont have ' + fruit + ' available')
-    else:
-        cost = fruitPrices[fruit] * weight
-        print(str(weight) + 'kg of ' + fruit + ' cost ' + str(cost) + ' euros.')
 
 def main():
-    fruits = ['apples', 'oranges', 'pears', 'bananas']
-
-    # for loops
-    for fruit in fruits:
-        print(fruit + ' for sale')
-
-    for fruit, price in fruitPrices.items():
-        if price < 2.00:
-            print('%s cost %f' %(fruit, price))
-        else:
-            print(fruit + ' are too expensive!')
-
-    # functions
-    buyFruit('pears', 5)
-    buyFruit('not_a_fruit', 10)
-    buyFruit('apples', 3)
-
-    # classes
-    myStore = FruitStore('My Store', fruitPrices)
-    print("Price of apples: " + str(myStore.getCostPerKg('apples')))
-    print("Price of shopping list: " + str(myStore.getPrecoCompras([('apples', 3), ('pears', 5)])))
+    g = Graph()
     
+    g.add_edge("s","a",2)
+    g.add_edge("s","e",2)
+    g.add_edge("a","b",2)
+    g.add_edge("e","f",5)
+    g.add_edge("b","c",2)
+    g.add_edge("f","g",2)
+    g.add_edge("c","d",3)
+    g.add_edge("g","t",2)
+    g.add_edge("d","t",3)
+
+    saida = -1
+    while saida != 0:
+        print('1-Imprimir Grafo')
+        print('2-Desenhar Grafo')
+        print('3-Imprimir nodos do Grafo')
+        print('4-Imprimir arestas do Grafo')
+        print('5-DFS')
+        print('6-BFS')
+        print('0-Sair')
+        saida = int(input("Introduza a sua opcao-> "))
+        if saida == 0:
+            print("Saindo...")
+        elif saida == 1:
+            print(g.m_graph)
+            l = input("Prima enter para continuar")
+        elif saida == 2:
+            g.desenha()
+        elif saida == 3:
+            print(g.m_graph.keys())
+            l = input("Prima enter para continuar")
+        elif saida == 4:
+            print(g.imprime_aresta())
+            l = input("Prima enter para continuar")
+        elif saida == 5:
+            inicio = input("Start Node-> ")
+            fim = input("End Node-> ")
+            print(g.procura_DFS(inicio, fim, path=[], visited=set()))
+            l = input("Prima enter para continuar")
+        elif saida == 6:
+            inicio = input("Start Node-> ")
+            fim = input("End Node-> ")
+            print(g.procura_BFS(inicio, fim))
+            l = input("Prima enter para continuar")
+        else:
+            print("You didn't add anything")
+            l = input("Prima enter para continuar")
+
 
 if __name__ == '__main__':
     main()
