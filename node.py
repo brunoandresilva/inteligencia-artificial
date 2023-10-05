@@ -20,6 +20,8 @@ class Node:
     def setName(self, name):
         self.m_name = name
     
+    def setId(self, id):
+        self.id = id
 
     # metodo utilizado para comparar 2 nodos
     def __eq__(self, other):
